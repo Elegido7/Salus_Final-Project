@@ -1,0 +1,44 @@
+// views/index.pug
+doctype html
+html
+  head
+    title Healthcare App - Home
+    link(rel="stylesheet", href="/styles/styles.css")  
+  body
+    h1 Welcome to the Salute Healthcare
+
+    //-  Display Doctors List
+    h2 Doctors List
+    table
+      thead
+        tr
+          th Name
+          th Title
+          th Description
+          th Hospitals
+      tbody
+        each doctor in doctors
+          tr
+            td= doctor.name
+            td= doctor.title
+            td= doctor.description
+            td
+              each hospital in doctor.hospitals
+                p= hospital
+
+    //- Display Patients List
+    h2 Patients List
+    table
+      thead
+        tr
+          th Full Name
+          th Contact 
+          th Symptoms
+          th Nearest Health Facility
+      tbody
+        each patient in patients
+          tr
+            td= patient.fullName
+            td= patient.contactNumber
+            td= patient.symptoms
+            td= patient.nearestHealthFacility

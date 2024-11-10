@@ -1,0 +1,23 @@
+doctype html
+html
+  head
+    title Doctor Details.
+  body
+    h1 Doctor #{doctor.name}
+    p Specialty: #{doctor.title}
+    p #{doctor.description}
+    
+    h3 Hospitals the Doctors works at:
+    ul
+      each hospital in doctor.hospitals
+        li #{hospital}
+
+    h3 Patients:
+    ul
+      each patient in doctor.patients
+        li
+          a(href=`/doctor/${doctor._id}/patients`) #{patient.fullName}
+
+    h3 Contact:
+    p Email: #{doctor.contactDetails.email}
+    p Phone: #{doctor.contactDetails.phone}
