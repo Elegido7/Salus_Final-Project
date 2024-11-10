@@ -3,7 +3,7 @@ const router = express.Router();
 const Doctor = require('../models/doctor');
 const Patient = require('../models/patient');
 
-// Create a new doctor
+// Create a new doctor profile
 router.post('/doctors', async (req, res) => {
   try {
     const doctor = new Doctor(req.body);
@@ -14,7 +14,7 @@ router.post('/doctors', async (req, res) => {
   }
 });
 
-// Get all doctors
+// Get all doctors profiles
 router.get('/doctors', async (req, res) => {
   try {
     const doctors = await Doctor.find();
