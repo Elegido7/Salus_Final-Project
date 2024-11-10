@@ -13,10 +13,10 @@ app.set('views', './views');
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Log the Mongo URL for debugging
+// Code for testing the Mongo URL for debugging
 console.log('Mongo URL:', process.env.MONGO_URL);
 
-// MongoDB connection
+// connection to MongoDB
 mongoose
   .connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
@@ -39,7 +39,7 @@ app.get('/', async (req, res) => {
   }
 });
 
-// Start the server
+// Start the server at port 3000
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
