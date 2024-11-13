@@ -4,7 +4,13 @@
 /node_modules
 /.pnp
 .pnp.js
-/config/health.env
+
+#config
+# Ignore .env files in src and config directories
+src/config/.env
+
+# Ignore all .env files
+*.env
 
 
 # testing
