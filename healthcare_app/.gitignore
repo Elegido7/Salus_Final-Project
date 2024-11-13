@@ -10,7 +10,7 @@
 src/config/.env
 
 # Ignore all .env files
-*.env
+src/**/*.env
 
 
 # testing
