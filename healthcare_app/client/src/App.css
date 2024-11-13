@@ -1,0 +1,107 @@
+.App {
+  display: grid;
+  grid-template-columns: auto auto;
+  padding: 20px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  background-color: rgb(238, 231, 201);
+}
+
+h1 {
+  font-size: 3em;
+  margin-bottom: 20px;
+  color: rgb(133, 10, 190);
+  margin: auto;
+  padding-top: 10px;
+  padding-bottom: 20px;
+  background-color: aliceblue;
+  text-align: center;
+}
+
+h1:hover {
+  color: rgb(4, 151, 124);
+}
+
+button {
+  display: flex;
+  justify-content: center;
+  background-color: rgb(4, 151, 124);
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 15px;
+}
+
+input {
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+  border: 1px solid rgb(4, 151, 124);
+  width: fit-content;
+}
+
+#login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+/* Media Queries*/
+@media (max-width: 768px) {
+  .App {
+    grid-template-columns: 1fr;
+    padding: 10px;
+  }
+
+  h1 {
+    font-size: 2em;
+  }
+
+  button {
+    padding: 8px 16px;
+    margin: 10px;
+  }
+
+  input {
+    width: auto;
+  }
+  form {
+    padding: 10px;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+  }
+  #login {
+    margin-top: 30%;
+  }
+}
+
+@media (max-width: 480px) {
+  .App {
+    padding: 5px;
+  }
+
+  h1 {
+    font-size: 1.5em;
+  }
+
+  button {
+    padding: 6px 12px;
+    margin: 5px;
+  }
+
+  input {
+    padding: 8px;
+    margin: 5px;
+  }
+  form {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+  }
+}
