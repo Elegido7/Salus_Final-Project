@@ -4,6 +4,8 @@
 /node_modules
 /.pnp
 .pnp.js
+/config/health.env
+
 
 # testing
 /coverage

@@ -1,29 +1,15 @@
 The project is based on a healthcare application builts using (Node.js, Express.js, MongoDB) to offers the following;
 
-Navbar separate for Doctor and patient pages designed to fit the pages names. The Navbar on the login page only allow access to settings, contact details and home page after login.
-
-1. created a code in App.js that allows the patients data to be backup in MongoDB under Database HealthCare and collection patient details and Doctors data save in collection Doctors details in the same Database.
-
+1. created a code that allows the doctors data to be saved in MongoDB.
 - Have a .env (health.env) for the mongo_url to secure it.
 - Define the basic routes and API endpoints for task management (e.g., create, read, update, delete).
 
-2. A doctor login portal that is connected to a doctors page that does the following:
+2. A doctor login authetification portal that is connected to a doctors page that does the following:
    a. Introduces the doctor with his or her area of expertise (Name, Title, Description).
    b. Indicates a list of hospitals the doctor operates in.
-   c. send
-   c. Has a lists of patients names with links to a third page that shows patients details:
-   -Patient details are Name, contact and symptoms recieved fetched from MongoDB database HealthCare and Collection patient details.
-
-   e. Has the doctors contact details (Name, email, phone number)
-
-3. A patient login portal that is connected to a patient page that does the following:
-   a. A page with a list of Doctors (Name, area of expertise) fetched from Doctors details collection.
-   A check box to select the Doctor the patient wants to see.
-   b. A registration page asking for the following details:
-   -Full Name - Contact Number
-   -National ID - Home location
-   -Nearest health facility
-   - Has a message box for symptoms (symptoms experienced and period of the symptoms)
+   c. Has the doctors contact details (Name, email, phone number)
+   d. create a page for entry of patients details:
+   -Patient details are Name, contact and symptoms recieved saved MongoDB database HealthCare and collection patients.
 
 # Getting Started with Create React App
 
