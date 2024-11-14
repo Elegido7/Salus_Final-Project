@@ -34,7 +34,7 @@ doctorSchema.methods.comparePassword = function (password) {
   return bcrypt.compare(password, this.password);
 };
 
-// Method to generate JWT for authentication
+// Generate JWT token
 doctorSchema.methods.generateJWT = function () {
   return jwt.sign({ id: this._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
 };

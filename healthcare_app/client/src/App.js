@@ -6,11 +6,13 @@ import './App.css';
 function App() {
   return (
     <>
-    <div><h1> HealthCare Portal</h1></div>
-    <div className="App">
-      <RegisterForm />
-      <LoginForm />
-    </div>
+      <div>
+        <h1> HealthCare Portal</h1>
+      </div>
+      <div className="App">
+        <RegisterForm />
+        <LoginForm />
+      </div>
     </>
   );
 }

@@ -1,11 +1,13 @@
 const express = require('express');
 const router = express.Router();
 const Task = require('../models/Task');
+const { authenticate } = require('./doctorRoutes');
 
-// Create a task
-router.post('/', async (req, res) => {
-  const { title, description, dueDate, doctorId } = req.body;
-  const newTask = new Task({ title, description, dueDate, doctorId });
+// POST /tasks - Create a new task for the logged-in doctor
+router.post('/', authenticate, async (req, res) => {
+  const { title, description, dueDate } = req.body;
+  const newTask = new Task({ title, description, dueDate, doctorId: req.userId });
+
   try {
     const savedTask = await newTask.save();
     res.status(201).json(savedTask);
@@ -14,7 +16,7 @@ router.post('/', async (req, res) => {
   }
 });
 
-// Get all tasks for a doctor
+// GET /tasks/:doctorId - Get all tasks for a doctor
 router.get('/:doctorId', async (req, res) => {
   try {
     const tasks = await Task.find({ doctorId: req.params.doctorId });
