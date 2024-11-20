@@ -1,6 +1,9 @@
-const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
+import mongoose from 'mongoose';
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 // Define doctor schema
 const doctorSchema = new mongoose.Schema({
@@ -39,4 +42,4 @@ doctorSchema.methods.generateJWT = function () {
   return jwt.sign({ id: this._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
 };
 
-module.exports = mongoose.model('Doctor', doctorSchema);
+export default mongoose.model('Doctor', doctorSchema);

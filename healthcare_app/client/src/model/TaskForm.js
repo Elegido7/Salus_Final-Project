@@ -1,96 +1,74 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
 
-const CreateTaskForm = () => {
+const TaskForm = () => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [dueDate, setDueDate] = useState('');
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
 
-  const handleCreateTask = async (taskData) => {
-    const yourToken = 'your-token-here'; // Define yourToken here
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const token = localStorage.getItem('token');
+    if (!token) {
+      setError('You must be logged in to create tasks.');
+      return;
+    }
+
+    const taskData = { title, description, dueDate };
     try {
-      const response = await fetch('/tasks', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${yourToken}`,
-        },
-        body: JSON.stringify(taskData),
+      await axios.post('/api/tasks', taskData, {
+        headers: { Authorization: `Bearer ${token}` },
       });
-      const result = await response.json();
-      if (response.ok) {
-        console.log('Task created successfully:', result);
-      } else {
-        console.error('Error creating task:', result.error);
-      }
+      setSuccess('Task created successfully!');
+      setTitle('');
+      setDescription('');
+      setDueDate('');
+      setError('');
     } catch (err) {
-      console.error('Network error:', err.message);
+      setError(err.response?.data?.error || 'An error occurred while creating the task.');
     }
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    handleCreateTask({ title, description, dueDate });
-    setTitle('');
-    setDescription('');
-    setDueDate('');
-  };
-
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Title:
-        <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} required />
-      </label>
-      <label>
-        Description:
-        <textarea value={description} onChange={(e) => setDescription(e.target.value)} />
-      </label>
-      <label>
-        Due Date:
-        <input type="date" value={dueDate} onChange={(e) => setDueDate(e.target.value)} required />
-      </label>
-      <button type="submit">Create Task</button>
-    </form>
+    <div className="Task">
+      <h2>New Task Form</h2>
+      {error && <p style={{ color: 'red' }}>{error}</p>}
+      {success && <p style={{ color: 'green' }}>{success}</p>}
+      <form onSubmit={handleSubmit} id="taskForm">
+        <div>
+          <input
+            type="text"
+            id="title"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            required
+            placeholder="Title"
+          />
+        </div>
+        <div>
+          <textarea
+            id="description"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            placeholder="Description"></textarea>
+        </div>
+        <div>
+          <label htmlFor="dueDate">Due Date:</label>
+          <input
+            type="date"
+            id="dueDate"
+            value={dueDate}
+            onChange={(e) => setDueDate(e.target.value)}
+            required
+            placeholder="Due Date"
+          />
+        </div>
+        <button type="submit">Create Task</button>
+      </form>
+    </div>
   );
 };
 
-const TaskList = ({ doctorId }) => {
-  const [tasks, setTasks] = useState([]);
-
-  useEffect(() => {
-    const fetchTasks = async () => {
-      try {
-        const yourToken = 'your-token-value';
-        const response = await fetch(`/tasks/${doctorId}`, {
-          headers: {
-            Authorization: `Bearer ${yourToken}`,
-          },
-        });
-        const data = await response.json();
-        if (response.ok) {
-          setTasks(data);
-        } else {
-          console.error('Error fetching tasks:', data.error);
-        }
-      } catch (err) {
-        console.error('Network error:', err.message);
-      }
-    };
-    fetchTasks();
-  }, [doctorId]);
-
-  return (
-    <ul>
-      {tasks.map((task) => (
-        <li key={task._id}>
-          <h3>{task.title}</h3>
-          <p>Status: {task.status}</p>
-          <p>Deadline: {new Date(task.dueDate).toLocaleDateString()}</p>
-          <p>Description: {task.description}</p>
-        </li>
-      ))}
-    </ul>
-  );
-};
-
-export { CreateTaskForm, TaskList };
+export default TaskForm;

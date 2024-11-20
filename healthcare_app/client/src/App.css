@@ -4,6 +4,7 @@
   padding: 20px;
   font-family: Georgia, 'Times New Roman', Times, serif;
   background-color: rgb(238, 231, 201);
+  padding-left: 10%;
 }
 
 h1 {
@@ -99,7 +100,7 @@ input {
 
 @media (max-width: 480px) {
   .App {
-    padding: 5px;
+    padding: 15px;
   }
 
   h1 {
@@ -120,5 +121,80 @@ input {
     display: flex;
     flex-direction: column;
     margin: auto;
+  }
+}
+.Task {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(238, 231, 201);
+  padding-bottom: 15px;
+}
+
+.Task h2 {
+  font-size: 2em;
+  color: rgb(4, 131, 88);
+  margin: auto;
+  padding: 10px;
+  text-align: center;
+  width: 80%;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  border-radius: 15px;
+  background-color: aliceblue;
+}
+
+#taskForm {
+  align-items: center;
+  padding: 10px;
+  margin: auto;
+  width: 80%;
+  border-radius: 10px;
+  background-color: aliceblue;
+}
+
+#taskForm label {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 500;
+  padding-top: 10px;
+  color: rgb(5, 134, 82);
+}
+
+#taskManage {
+  display: grid;
+  grid-template-columns: auto auto;
+  align-items: center;
+  padding: 10px;
+  background-color: rgb(238, 231, 201);
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .Task h2 {
+    font-size: 1.5em;
+  }
+
+  #taskForm {
+    width: 90%;
+  }
+
+  #taskManage {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .Task h2 {
+    font-size: 1.2em;
+  }
+
+  #taskForm {
+    width: 80%;
+  }
+
+  #taskManage {
+    grid-template-columns: 1fr;
   }
 }

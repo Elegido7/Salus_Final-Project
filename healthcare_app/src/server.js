@@ -1,10 +1,11 @@
-const express = require('express');
-require('dotenv').config({ path: './config/health.env' });
-const mongoose = require('mongoose');
-const cors = require('cors');
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
-const User = require('./models/User');
+import express from 'express';
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+dotenv.config({ path: './config/health.env' });
+import cors from 'cors';
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+import User from './models/User.js';
 
 const app = express();
 app.use(express.json());
@@ -19,9 +20,9 @@ mongoose
   .catch((err) => console.error('MongoDB connection error:', err));
 
 // Routes
-const doctorRoutes = require('./routes/doctorRoutes');
-const patientRoutes = require('./routes/patientRoutes');
-const taskRoutes = require('./routes/taskRoutes');
+import doctorRoutes from './routes/doctorRoutes.js';
+import patientRoutes from './routes/patientRoutes.js';
+import taskRoutes from './routes/taskRoutes.js';
 
 app.use('/api/doctors', doctorRoutes);
 app.use('/api/patients', patientRoutes);
@@ -54,14 +55,13 @@ app.post('/login', async (req, res) => {
   }
 });
 
-// Error handling
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).json({ message: err.message });
 });
 
 // Start the server
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });

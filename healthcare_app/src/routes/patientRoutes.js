@@ -1,6 +1,6 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const Patient = require('../models/Patient');
+import Patient from '../models/patient.js';
 
 // Add a new patient
 router.post('/', async (req, res) => {
@@ -58,5 +58,4 @@ router.delete('/:id', async (req, res) => {
   }
 });
 
-module.exports = router;
-
+export default router;

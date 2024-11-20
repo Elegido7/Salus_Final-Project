@@ -1,25 +1,9 @@
-// routes/doctorRoutes.js
-const express = require('express');
+import express from 'express';
+import bcrypt from 'bcryptjs';
+import Doctor from '../models/doctor.js';
+import authenticate from '../middleware/authenticate.js';
+
 const router = express.Router();
-const Doctor = require('../models/Doctor');
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
-
-// Middleware to verify JWT
-const authenticate = (req, res, next) => {
-  // Extract the token from the Authorization header
-  const token = req.header('Authorization')?.replace('Bearer ', '');
-  if (!token) return res.status(401).json({ error: 'Access denied. No token provided.' });
-
-  try {
-    // Verify and decode the JWT
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    req.doctorId = decoded.id; // Attach doctor ID to request object for later use
-    next();
-  } catch (error) {
-    res.status(400).json({ error: 'Invalid token.' });
-  }
-};
 
 // Register a new doctor (public route)
 router.post('/register', async (req, res) => {
@@ -56,7 +40,7 @@ router.post('/login', async (req, res) => {
 });
 
 // Get all doctors (protected route)
-router.get('/', authenticate, async (req, res) => {
+router.get('/', authenticate, async (res) => {
   try {
     const doctors = await Doctor.find();
     res.status(200).json(doctors);
@@ -102,4 +86,4 @@ router.delete('/:id', authenticate, async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;
