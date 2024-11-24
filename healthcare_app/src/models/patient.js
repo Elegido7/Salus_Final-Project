@@ -1,14 +1,6 @@
 import mongoose from 'mongoose';
 
-// Check if mongoose is already connected
-if (mongoose.connection.readyState === 0) {
-  mongoose.connect('your_connection_string', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  });
-}
-
-//patient schema defined
+// Define the patient schema
 const patientSchema = new mongoose.Schema(
   {
     name: { type: String, required: true },

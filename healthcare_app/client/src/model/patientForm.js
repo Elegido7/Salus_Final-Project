@@ -17,7 +17,7 @@ const PatientForm = () => {
     e.preventDefault();
     try {
       // Replace with your actual API endpoint to save patient data
-      await axios.post('http://localhost:3000/api/patients', patientData);
+      await axios.post('http://localhost:3001/api/patients', patientData);
       alert('Patient information saved successfully!');
     } catch (error) {
       console.error('Error saving patient data:', error);

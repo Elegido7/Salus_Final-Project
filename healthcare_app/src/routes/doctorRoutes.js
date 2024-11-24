@@ -1,88 +1,117 @@
 import express from 'express';
 import bcrypt from 'bcryptjs';
+import { body, validationResult } from 'express-validator';
 import Doctor from '../models/doctor.js';
 import authenticate from '../middleware/authenticate.js';
 
 const router = express.Router();
 
 // Register a new doctor (public route)
-router.post('/register', async (req, res) => {
-  const { name, title, description, hospitals, contactDetails, password } = req.body;
-  const newDoctor = new Doctor({ name, title, description, hospitals, contactDetails, password });
+router.post(
+  '/register',
+  [
+    body('name').notEmpty().withMessage('Name is required'),
+    body('title').notEmpty().withMessage('Title is required'),
+    body('contactDetails.email').isEmail().withMessage('Valid email is required'),
+    body('password').isLength({ min: 6 }).withMessage('Password must be at least 6 characters'),
+  ],
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ success: false, errors: errors.array() });
+    }
 
-  try {
-    // Save the new doctor to the database
-    const savedDoctor = await newDoctor.save();
-    res.status(201).json(savedDoctor);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
+    const { name, title, description, hospitals, contactDetails, password } = req.body;
+
+    try {
+      const hashedPassword = await bcrypt.hash(password, 10);
+      const newDoctor = new Doctor({
+        name,
+        title,
+        description,
+        hospitals,
+        contactDetails,
+        password: hashedPassword,
+      });
+
+      const savedDoctor = await newDoctor.save();
+      res.status(201).json({ success: true, data: savedDoctor });
+    } catch (err) {
+      res.status(500).json({ success: false, error: err.message });
+    }
   }
-});
+);
 
 // Login a doctor and issue a JWT (public route)
-router.post('/login', async (req, res) => {
-  const { email, password } = req.body;
-  try {
-    // Find the doctor by email
-    const doctor = await Doctor.findOne({ 'contactDetails.email': email });
-    if (!doctor) return res.status(400).json({ error: 'Doctor not found' });
+router.post(
+  '/login',
+  [
+    body('email').isEmail().withMessage('Valid email is required'),
+    body('password').notEmpty().withMessage('Password is required'),
+  ],
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ success: false, errors: errors.array() });
+    }
 
-    // Check if the password matches
-    const isMatch = await doctor.comparePassword(password);
-    if (!isMatch) return res.status(400).json({ error: 'Invalid password' });
+    const { email, password } = req.body;
 
-    // Generate JWT token
-    const token = doctor.generateJWT();
-    res.status(200).json({ token }); // Send the token as response
-  } catch (err) {
-    res.status(500).json({ error: err.message });
+    try {
+      const doctor = await Doctor.findOne({ 'contactDetails.email': email });
+      if (!doctor) return res.status(400).json({ success: false, error: 'Invalid credentials' });
+
+      const isMatch = await bcrypt.compare(password, doctor.password);
+      if (!isMatch) return res.status(400).json({ success: false, error: 'Invalid credentials' });
+
+      const token = doctor.generateJWT();
+      res.status(200).json({ success: true, token });
+    } catch (err) {
+      res.status(500).json({ success: false, error: err.message });
+    }
   }
-});
+);
 
 // Get all doctors (protected route)
-router.get('/', authenticate, async (res) => {
+router.get('/', authenticate, async (req, res) => {
   try {
     const doctors = await Doctor.find();
-    res.status(200).json(doctors);
+    res.status(200).json({ success: true, data: doctors });
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({ success: false, error: err.message });
   }
 });
 
 // Update doctor information by ID (protected route)
 router.put('/:id', authenticate, async (req, res) => {
-  const { name, title, description, hospitals, contactDetails, password } = req.body;
-  const updateData = { name, title, description, hospitals, contactDetails };
+  const { password, ...updateData } = req.body;
 
-  // If a new password is provided, hash it before updating
   if (password) {
     try {
       const salt = await bcrypt.genSalt(10);
       updateData.password = await bcrypt.hash(password, salt);
-    } catch (error) {
-      return res.status(500).json({ error: 'Error hashing password' });
+    } catch (err) {
+      return res.status(500).json({ success: false, error: 'Error hashing password' });
     }
   }
 
   try {
-    // Find doctor by ID and update with new data
     const updatedDoctor = await Doctor.findByIdAndUpdate(req.params.id, updateData, { new: true });
-    if (!updatedDoctor) return res.status(404).json({ error: 'Doctor not found' });
-    res.status(200).json(updatedDoctor);
+    if (!updatedDoctor) return res.status(404).json({ success: false, error: 'Doctor not found' });
+    res.status(200).json({ success: true, data: updatedDoctor });
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({ success: false, error: err.message });
   }
 });
 
 // Delete a doctor by ID (protected route)
 router.delete('/:id', authenticate, async (req, res) => {
   try {
-    // Find and delete the doctor by ID
     const deletedDoctor = await Doctor.findByIdAndDelete(req.params.id);
-    if (!deletedDoctor) return res.status(404).json({ error: 'Doctor not found' });
-    res.status(200).json({ message: 'Doctor deleted successfully' });
+    if (!deletedDoctor) return res.status(404).json({ success: false, error: 'Doctor not found' });
+    res.status(200).json({ success: true, message: 'Doctor deleted successfully' });
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({ success: false, error: err.message });
   }
 });
 

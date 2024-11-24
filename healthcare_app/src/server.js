@@ -1,21 +1,23 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
-dotenv.config({ path: './config/health.env' });
 import cors from 'cors';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import User from './models/User.js';
 
+// Initializing dotenv
+dotenv.config({ path: './config/health.env' });
 const app = express();
 app.use(express.json());
 app.use(cors());
 
-// Connection to MongoDB Atlas
-console.log(process.env.MONGO_URI);
-
+// MongoDB connection using the MONGO_URI from the environment variable
 mongoose
-  .connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
   .then(() => console.log('MongoDB connected successfully'))
   .catch((err) => console.error('MongoDB connection error:', err));
 
@@ -48,13 +50,21 @@ app.post('/login', async (req, res) => {
     if (!user || !(await bcrypt.compare(password, user.password))) {
       return res.status(401).json({ message: 'Invalid email or password' });
     }
-    const token = jwt.sign({ userId: user._id }, 'your_jwt_secret', { expiresIn: '1h' });
+
+    // Include the username in the token payload
+    const token = jwt.sign(
+      { userId: user._id, username: user.username }, // Include username in the token
+      process.env.JWT_SECRET,
+      { expiresIn: '1h' }
+    );
+
     res.json({ message: 'Login successful', token });
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
 });
 
+// Global error handler
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).json({ message: err.message });

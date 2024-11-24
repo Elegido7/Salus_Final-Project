@@ -1,25 +1,41 @@
 import express from 'express';
+import { body, validationResult } from 'express-validator';
 import Task from '../models/Task.js';
 import authenticate from '../middleware/authenticate.js';
+
 const router = express.Router();
 
 // POST /tasks - Create a new task for the logged-in doctor
-router.post('/', authenticate, async (req, res) => {
-  const { title, description, dueDate } = req.body;
-  const newTask = new Task({
-    title,
-    description,
-    dueDate,
-    doctorId: req.doctorId,
-  });
+router.post(
+  '/',
+  authenticate,
+  [
+    body('title').notEmpty().withMessage('Title is required'),
+    body('description').notEmpty().withMessage('Description is required'),
+    body('dueDate').isISO8601().withMessage('Due date must be a valid date'),
+  ],
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
 
-  try {
-    const savedTask = await newTask.save();
-    res.status(201).json(savedTask);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
+    const { title, description, dueDate } = req.body;
+    const newTask = new Task({
+      title,
+      description,
+      dueDate,
+      doctorId: req.doctorId,
+    });
+
+    try {
+      const savedTask = await newTask.save();
+      res.status(201).json({ success: true, data: savedTask });
+    } catch (err) {
+      res.status(500).json({ success: false, error: err.message });
+    }
   }
-});
+);
 
 // GET /tasks - Retrieve all tasks for the logged-in doctor
 router.get('/', authenticate, async (req, res) => {

@@ -1,11 +1,29 @@
 import mongoose from 'mongoose';
 import bcrypt from 'bcryptjs';
 
-const userSchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  email: { type: String, required: true, unique: true },
-  password: { type: String, required: true },
-});
+const userSchema = new mongoose.Schema(
+  {
+    username: {
+      type: String,
+      required: true,
+      unique: true,
+    }, // Added username field
+    name: { type: String, required: true },
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+      validate: {
+        validator: function (v) {
+          return /^\S+@\S+\.\S+$/.test(v);
+        },
+        message: (props) => `${props.value} is not a valid email address!`,
+      }, //ensures email is in the correct format
+    },
+    password: { type: String, required: true },
+  },
+  { timestamps: true }
+);
 
 // Password hashing before saving a new user
 userSchema.pre('save', async function (next) {
@@ -17,5 +35,10 @@ userSchema.pre('save', async function (next) {
     next(err);
   }
 });
+
+// Compares passwords and handle password verification during login
+userSchema.methods.comparePassword = async function (candidatePassword) {
+  return bcrypt.compare(candidatePassword, this.password);
+};
 
 export default mongoose.model('User', userSchema);

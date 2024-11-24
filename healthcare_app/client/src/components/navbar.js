@@ -1,8 +1,11 @@
+// src/components/Navbar.js
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../App.css';
 
 function Navbar() {
+  const username = localStorage.getItem('username');
+
   return (
     <nav className="navbar">
       <div className="navbar-container">
@@ -20,6 +23,11 @@ function Navbar() {
           <li>
             <Link to="/task-management">Task Management</Link>
           </li>
+          {username && (
+            <li>
+              <Link to="/logout">Logout ({username})</Link> {/* Display username if logged in */}
+            </li>
+          )}
         </ul>
       </div>
     </nav>
