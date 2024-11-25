@@ -1,4 +1,3 @@
-// src/model/LogoutForm.js
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -6,10 +5,16 @@ const LogoutForm = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Remove the token from localStorage
-    localStorage.removeItem('token');
+    // Debug token removal
+    const token = localStorage.getItem('token');
+    if (token) {
+      console.log('Logging out, token found:', token);
+      localStorage.removeItem('token');
+    } else {
+      console.warn('No token found during logout.');
+    }
 
-    // Redirect the user to the login page
+    // Redirect to login
     navigate('/login');
   }, [navigate]);
 

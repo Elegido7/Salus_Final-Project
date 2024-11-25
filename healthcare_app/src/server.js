@@ -41,7 +41,6 @@ app.post('/register', async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 });
-
 // User login
 app.post('/login', async (req, res) => {
   try {
@@ -51,9 +50,9 @@ app.post('/login', async (req, res) => {
       return res.status(401).json({ message: 'Invalid email or password' });
     }
 
-    // Include the username in the token payload
+    // Include the registered name in the token payload
     const token = jwt.sign(
-      { userId: user._id, username: user.username }, // Include username in the token
+      { userId: user._id, name: user.name, email: user.email }, 
       process.env.JWT_SECRET,
       { expiresIn: '1h' }
     );

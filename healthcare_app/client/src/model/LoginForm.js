@@ -15,8 +15,11 @@ const LoginForm = () => {
     try {
       const response = await axios.post('http://localhost:3001/login', formData);
       alert('Login successful!');
-      localStorage.setItem('token', response.data.token); // Save JWT token
-      navigate('/task-management'); // Redirect to Task Management page
+
+      localStorage.setItem('token', response.data.token);
+      localStorage.setItem('username', response.data.name); 
+
+      navigate('/task-management');
     } catch (error) {
       alert(error.response.data.message);
     }

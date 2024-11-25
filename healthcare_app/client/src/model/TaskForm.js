@@ -5,6 +5,7 @@ const TaskForm = () => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [dueDate, setDueDate] = useState('');
+  const [doctorId, setDoctorId] = useState(''); // State for Doctor's ID
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
 
@@ -16,7 +17,7 @@ const TaskForm = () => {
       return;
     }
 
-    const taskData = { title, description, dueDate };
+    const taskData = { title, description, dueDate, doctorId }; // Include doctorId
     try {
       await axios.post('/api/tasks', taskData, {
         headers: { Authorization: `Bearer ${token}` },
@@ -25,6 +26,7 @@ const TaskForm = () => {
       setTitle('');
       setDescription('');
       setDueDate('');
+      setDoctorId('');
       setError('');
     } catch (err) {
       setError(err.response?.data?.error || 'An error occurred while creating the task.');
@@ -37,6 +39,16 @@ const TaskForm = () => {
       {error && <p style={{ color: 'red' }}>{error}</p>}
       {success && <p style={{ color: 'green' }}>{success}</p>}
       <form onSubmit={handleSubmit} id="taskForm">
+        <div>
+          <input
+            type="text"
+            id="doctorId"
+            value={doctorId}
+            onChange={(e) => setDoctorId(e.target.value)}
+            required
+            placeholder="Doctor ID"
+          />
+        </div>
         <div>
           <input
             type="text"

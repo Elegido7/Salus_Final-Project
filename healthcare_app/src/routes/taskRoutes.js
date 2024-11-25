@@ -5,7 +5,6 @@ import authenticate from '../middleware/authenticate.js';
 
 const router = express.Router();
 
-// POST /tasks - Create a new task for the logged-in doctor
 router.post(
   '/',
   authenticate,
@@ -38,12 +37,12 @@ router.post(
 );
 
 // GET /tasks - Retrieve all tasks for the logged-in doctor
-router.get('/', authenticate, async (req, res) => {
+router.get('/tasks', authenticate, async (req, res) => {
   try {
-    const tasks = await Task.find({ doctorId: req.doctorId });
+    const tasks = await Task.find({ doctorId: req.doctorId, isDeleted: false });
     res.status(200).json(tasks);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to fetch tasks.' });
   }
 });
 
