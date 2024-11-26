@@ -20,6 +20,8 @@ router.post(
     }
 
     const { title, description, dueDate } = req.body;
+
+    // Ensures the doctorId comes from the authenticate file
     const newTask = new Task({
       title,
       description,
