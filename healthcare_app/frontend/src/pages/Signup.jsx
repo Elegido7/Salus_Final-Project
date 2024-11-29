@@ -1,11 +1,10 @@
-import React, { useEffect } from 'react'
+import React, { useEffect } from 'react';
 import SignupForm from '../components/SignupForm';
-import MainLayout from '../layouts/MainLayout'
+import MainLayout from '../layouts/MainLayout';
 
 const Signup = () => {
-
   useEffect(() => {
-    document.title = "Signup";
+    document.title = 'Signup';
   }, []);
   return (
     <>
@@ -13,7 +12,7 @@ const Signup = () => {
         <SignupForm />
       </MainLayout>
     </>
-  )
-}
+  );
+};
 
-export default Signup
+export default Signup;

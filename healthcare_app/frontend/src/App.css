@@ -1,7 +1,7 @@
 .navbar {
   background-color: rgb(242, 235, 207);
   color: #0a9075;
-  padding:1em 5rem;
+  padding: 1em 5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -43,7 +43,7 @@
 
 .navbar .fa-bars:hover,
 .navbar .fa-xmark:hover {
-  color: #ffd700;
+  color: #f7d307;
 }
 
 /* Sidebar Styles */
