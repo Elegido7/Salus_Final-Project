@@ -61,9 +61,9 @@ This document includes screenshots showcasing various functionalities of the pro
 
 ![Task Updated](assets/Task_updated.png)
 
-### 13. Task Deleted
+### 13. User Registered
 
-![Task Deleted](assets/Task_deleted.png)
+## ![Registration](assets/Registration.png)
 
 ### 14. Task Saved
 
@@ -84,10 +84,6 @@ This document includes screenshots showcasing various functionalities of the pro
 ### 18. User Registered
 
 ![User Registered](assets/UserRegistered.png)
-
-### 19. User Registered
-
-## ![Registration](assets/Registration.png)
 
 ## VIDEO
 
