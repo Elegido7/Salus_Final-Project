@@ -3,6 +3,10 @@ The project has both Front-end and Back-end
 
 ---
 
+## Watch video
+
+youtube https://youtu.be/ewGzm6qYWS0
+
 # Task Manager Application
 
 ### Overview
