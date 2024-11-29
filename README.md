@@ -3,6 +3,16 @@ The project has both Front-end and Back-end
 
 ---
 
+## Screenshot
+
+### Home Page
+
+![Home Page](assets/Home_page.png)
+
+### add Task
+
+![Dashboard](assets/Adding_New-Task)
+
 ## Watch video
 
 youtube https://youtu.be/ewGzm6qYWS0
