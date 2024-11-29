@@ -2,7 +2,7 @@ The project is based on a healthcare application builts using (Node.js, Express.
 The project has both Front-end and Back-end
 
 VIDEO
-watch the Project video on: https://youtu.be/GaRVUzd9X2E
+watch the Project video on: https://youtu.be/ewGzm6qYWS0
 
 ---
 
