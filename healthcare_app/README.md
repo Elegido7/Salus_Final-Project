@@ -1,7 +1,7 @@
 The project is based on a healthcare application builts using (Node.js, Express.js, MongoDB).
 The project has both Front-end and Back-end
 
-VIDEO
+## VIDEO
 watch the Project video on: https://youtu.be/ewGzm6qYWS0
 
 ---
