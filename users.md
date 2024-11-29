@@ -1,8 +1,6 @@
 VIDEO
 watch the Project video on: https://youtu.be/ewGzm6qYWS0
 
----
-
 This is the data for the user accounts that exist on my MongoDB servers.
 
 {

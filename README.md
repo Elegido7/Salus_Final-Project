@@ -1,6 +1,8 @@
 The project is based on a healthcare application builts using (Node.js, Express.js, MongoDB).
 The project has both Front-end and Back-end
 
+---
+
 # Task Manager Application
 
 ### Overview
