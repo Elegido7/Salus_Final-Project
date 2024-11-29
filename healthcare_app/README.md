@@ -1,5 +1,138 @@
-The project is based on a healthcare application builts using (Node.js, Express.js, MongoDB) based on the following
+The project is based on a healthcare application builts using (Node.js, Express.js, MongoDB).
+The project has both Front-end and Back-end
 
+VIDEO
+watch the Project video on: https://youtu.be/GaRVUzd9X2E
+
+---
+
+# Task Manager Application
+
+### Overview
+
+The **Task Manager Application** is a full-stack web application designed to help users efficiently manage their tasks. It supports features like user authentication, task creation, status tracking, and deadline management. It is tailored for doctors with specific portals and task management functionality.
+
+---
+
+### Features
+
+- User authentication with JWT.
+- Separate portals for doctors and patients.
+- Create, edit, and delete tasks.
+- View task lists with filters (e.g., by status or deadline).
+- Integration with MongoDB for persistent data storage.
+- Responsive design for usability across devices.
+
+---
+
+### Tech Stack
+
+**Frontend:**
+
+- React.js
+- Axios (for API calls)
+- CSS and Bootstrap CSS
+
+**Backend:**
+
+- Node.js
+- Express.js
+- JSON Web Tokens (JWT) for authentication
+
+**Database:**
+
+- MongoDB (Atlas for cloud-hosted DB)
+
+---
+
+### Installation
+
+1. **Clone the repository:**
+
+   ```bash
+   git clone https://github.com/Elegido7/Salus_Final-Project.git
+   cd healthcare_app
+   ```
+
+2. **Backend Setup:**
+
+   - Navigate to the `server` directory:
+     ```bash
+     cd server
+     ```
+   - Install dependencies:
+     ```bash
+     npm install
+     ```
+   - Set up environment variables:
+     - Create a `.env` file with the following:
+       ```env
+       PORT=5000
+       MONGO_URI=your-mongodb-uri
+       ACCESS_TOKEN_SECRET=your-secret-code
+       ```
+   - Start the server:
+     ```bash
+     npm start
+     ```
+
+3. **Frontend Setup:**
+
+   - Navigate to the `client` directory:
+     ```bash
+     cd ../client
+     ```
+   - Install dependencies:
+     ```bash
+     npm install
+     ```
+   - Start the development server:
+     ```bash
+     npm start
+     ```
+
+4. Open the application in your browser at `http://localhost:3000`.
+
+---
+
+### Usage
+
+- **Doctors:**
+  - Log in to view and manage patient tasks.
+  - Create, update, or delete task records.
+
+### API Endpoints
+
+| Method | Endpoint         | Description              |
+| ------ | ---------------- | ------------------------ |
+| POST   | `/api/register`  | Register a new user      |
+| POST   | `/api/login`     | Log in and get a JWT     |
+| GET    | `/api/tasks`     | Get all tasks for a user |
+| POST   | `/api/tasks`     | Create a new task        |
+| PUT    | `/api/tasks/:id` | Update a specific task   |
+| DELETE | `/api/tasks/:id` | Delete a specific task   |
+
+---
+
+### Contributing
+
+We welcome contributions! Please fork the repository and submit a pull request.
+
+---
+
+### License
+
+This project is licensed under the [MIT License](LICENSE).
+
+---
+
+### Screenshots (Optional)
+
+Add screenshots or GIFs to showcase the app's functionality and interface.
+
+---
+
+Feel free to adapt this structure to suit your specific project needs. Let me know if you need help with any section!
 
 # Getting Started with Create React App
 
