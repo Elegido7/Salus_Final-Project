@@ -1,10 +1,94 @@
 The project is based on a healthcare application builts using (Node.js, Express.js, MongoDB).
 The project has both Front-end and Back-end
 
-## Screenshots
-The screenshots are in the frontend folder under folder screenshots
+## Video
+
+## Project Demo Video
+
+Click the image below to watch the demo video:
+
+[![Watch the Demo Video](assets/video-thumbnail.png)](https://youtu.be/ewGzm6qYWS0)
+
+# Project Screenshots
+
+This document includes screenshots showcasing various functionalities of the project.
+
+### 1. Adding a New Task
+
+![Adding a New Task](assets/Adding_new-Tasks.png)
+
+### 2. Date Selection
+
+![Date Selection](assets/Date.png)
+
+### 3. Home Page
+
+![Home Page](assets/Home_page.png)
+
+### 4. Initial Post Request
+
+![Initial Post Request](assets/Initial_post.png)
+
+### 5. Logged In with the New User
+
+![Logged In with the New User](assets/Logged_in_the_new_user.png)
+
+### 6. Login
+
+![Login](assets/Login.png)
+
+### 7. Password Testing
+
+![Password Testing](assets/password_testing.png)
+
+### 8. Registration
+
+![Registration](assets/Registration.png)
+
+### 9. Registered a New User
+
+![Registered a New User](assets/Registered_a_new_user.png)
+
+### 10. Task Deleted on MongoDB
+
+![Task Deleted on MongoDB](assets/Task_deleted_on_MongoDB.png)
+
+### 11. Task to Be Deleted Created
+
+![Task to Be Deleted Created](assets/Task_to_be_deleted_created.png)
+
+### 12. Task Updated
+
+![Task Updated](assets/Task_updated.png)
+
+### 13. Task Deleted
+
+![Task Deleted](assets/Task_deleted.png)
+
+### 14. Task Saved
+
+![Task Saved](assets/Task-Saved.png)
+
+### 15. Tasks Created
+
+![Tasks Created](assets/Tasks_created.png)
+
+### 16. Tasks Missing Title and Due Date
+
+![Tasks Missing Title and Due Date](assets/Tasks_missing_title_and_due_date.png)
+
+### 17. Title and Due Date Updated
+
+![Title and Due Date Updated](assets/Title_and_DueDate_updated.png)
+
+### 18. User Registered
+
+![User Registered](assets/User_registered.png)
+
+---
 
 ## VIDEO
+
 watch the Project video on: https://youtu.be/ewGzm6qYWS0
 
 ---
