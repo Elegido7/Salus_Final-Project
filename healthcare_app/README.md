@@ -15,7 +15,7 @@ This document includes screenshots showcasing various functionalities of the pro
 
 ### 1. Adding a New Task
 
-![Adding a New Task](assets/Adding_new-Tasks.png)
+![Adding a New Task](assets/Add_Task.png)
 
 ### 2. Date Selection
 
@@ -23,15 +23,15 @@ This document includes screenshots showcasing various functionalities of the pro
 
 ### 3. Home Page
 
-![Home Page](assets/Home_page.png)
+![Home Page](assets/Homepage.png)
 
 ### 4. Initial Post Request
 
-![Initial Post Request](assets/Initial_post.png)
+![Initial Post Request](assets/InitialPost.png)
 
 ### 5. Logged In with the New User
 
-![Logged In with the New User](assets/Logged_in_the_new_user.png)
+![Logged In with the New User](assets/newUserLogin.png)
 
 ### 6. Login
 
@@ -39,7 +39,7 @@ This document includes screenshots showcasing various functionalities of the pro
 
 ### 7. Password Testing
 
-![Password Testing](assets/password_testing.png)
+![Password Testing](assets/passwordTesting.png)
 
 ### 8. Registration
 
@@ -47,15 +47,15 @@ This document includes screenshots showcasing various functionalities of the pro
 
 ### 9. Registered a New User
 
-![Registered a New User](assets/Registered_a_new_user.png)
+![Registered a New User](assets/RegisteredNew_user.png)
 
 ### 10. Task Deleted on MongoDB
 
-![Task Deleted on MongoDB](assets/Task_deleted_on_MongoDB.png)
+![Task Deleted on MongoDB](assets/TaskDeletedMongoDB.png)
 
 ### 11. Task to Be Deleted Created
 
-![Task to Be Deleted Created](assets/Task_to_be_deleted_created.png)
+![Task to Be Deleted Created](assets/TaskToBeDeleted.png)
 
 ### 12. Task Updated
 
@@ -75,17 +75,19 @@ This document includes screenshots showcasing various functionalities of the pro
 
 ### 16. Tasks Missing Title and Due Date
 
-![Tasks Missing Title and Due Date](assets/Tasks_missing_title_and_due_date.png)
+![Tasks Missing Title and Due Date](assets/TaskDueDateToBeUpdated.png)
 
 ### 17. Title and Due Date Updated
 
-![Title and Due Date Updated](assets/Title_and_DueDate_updated.png)
+![Title and Due Date Updated](assets/TitleDueDate_updated.png)
 
 ### 18. User Registered
 
-![User Registered](assets/User_registered.png)
+![User Registered](assets/UserRegistered.png)
 
----
+### 19. User Registered
+
+## ![Registration](assets/Registration.png)
 
 ## VIDEO
 
