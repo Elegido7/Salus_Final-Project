@@ -1,18 +1,5 @@
-The project is based on a healthcare application builts using (Node.js, Express.js, MongoDB) to offers the following;
+The project is based on a healthcare application builts using (Node.js, Express.js, MongoDB) based on the following
 
-1. created a code that allows the doctors data to be saved in MongoDB.
-
-- created a .env (health.env) for the mongo_url to secure it.
-- Defined the basic routes and API endpoints for task management (e.g., create, read, update, delete).
-
-2. Doctor login authetification code that is connected to a doctors page that does the following was created:
-   a. Introduces the doctor with his or her area of expertise (Name, Title, Description).
-   b. Indicates a list of hospitals the doctor operates in.
-   c. Has the doctors contact details (Name, email, phone number)
-   d. create a page for entry of patients details:
-   -Patient details are Name, contact and symptoms recieved saved MongoDB database HealthCare and collection patients.
-
-   Doctor, patient and tasks Data was posted using postman and saved in MongoDB. Screenshots availed.
 
 # Getting Started with Create React App
 
